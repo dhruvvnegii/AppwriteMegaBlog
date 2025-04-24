@@ -69,8 +69,7 @@ function Home() {
           ) : (
             images.map((img) => {
               const fileUrl = appwriteService.getFileView("68027cfb000469109c00", img.$id);
-              console.log("Generated File URL: ", fileUrl); // Log the URL
-
+        
               return (
                 <div key={img.$id} className="p-2 w-1/4">
                   <img
