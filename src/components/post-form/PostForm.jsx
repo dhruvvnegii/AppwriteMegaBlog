@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { use, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -27,7 +27,7 @@ export default function PostForm({ post }) {
 
     if (post) {
       const file = data.image?.[0]
-        ? await appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0],userData.$id)
         : null;
 
       if (file && post.featuredimg) {
@@ -47,7 +47,7 @@ export default function PostForm({ post }) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
-      const file = await appwriteService.uploadFile(data.image[0]);
+      const file = await appwriteService.uploadFile(data.image[0],userData.$id);
 
       if (!file) {
         console.error("File upload failed.");
